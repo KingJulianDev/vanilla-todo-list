@@ -92,6 +92,7 @@ console.log(typeof(completeBtn))
 
 completeBtn.forEach((el) => {
     let i
+    console.log('hi')
     //let testt = Array.from(tasksArr)
     //console.log(testt)
     i = completeBtn.indexOf(el);
