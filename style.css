@@ -42,7 +42,7 @@ body{
     width: 45%;
     height: 150px;
     margin-bottom: 10px;
-    border-radius: 15%;
+    border-radius: 15px;
     color: white;
 }
 
@@ -80,6 +80,8 @@ body{
     display: flex;
     height: 50%;
     justify-content: space-around;
+    padding: 7px 0 0 7px;
+    box-sizing: border-box;
 }
 
 .is-time-limited{
@@ -101,15 +103,20 @@ body{
     overflow: hidden;
 }
 
-.details-btn, .done-btn{
-    width: 40%;
+.details-btn, .delete-btn{
+    width: 60%;
     height: 70%;
-    border-radius: 15%;
+    border-radius: 15px;
     background-color: grey;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 12px;
     box-sizing: border-box;
     margin-top: 10px;
+    cursor: pointer;
+}
+
+.delete-btn{
+    width: 30%;
 }
 
 .modal{
@@ -118,7 +125,7 @@ body{
     background-color: goldenrod;
     visibility: hidden;
     position: fixed;
-    margin: 7% auto;
+    margin: 5% auto;
     /* top:10%;
     left: 10%; */
     border-radius: 15px;

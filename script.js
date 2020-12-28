@@ -11,8 +11,9 @@ const detailsOfTaskInput = document.getElementById('details-input')
 let nameOfTask 
 let detailsOfTask
 
-let tasks
-let doneButtons
+let tasks           //массив тасков
+let doneButtons     //массив кнопок "сделано"
+let deleteButtons   //массив кнопок "удалить"
 let tasksArr = [] // array with tasks
 
 function clock(){
@@ -23,7 +24,7 @@ clock()
 
 let isModalVisible = false
 
-function checkIsModalVisible(){
+function checkIsModalVisible(){ //проверяет видимо ли модальное окно
     isModalVisible = !isModalVisible
     if(isModalVisible === true){
         modal.style.visibility = "visible"
@@ -36,7 +37,7 @@ addTaskButton.onclick = () => {
     checkIsModalVisible()
 }
 
-let isDateInputActive = false
+let isDateInputActive = false // проверяет активен ли инпут даты
 limitedBtn.onclick = () => {
     isDateInputActive = !isDateInputActive
     if(isDateInputActive === true){
@@ -49,15 +50,35 @@ limitedBtn.onclick = () => {
     
 }
 
-function testing(){
+function addOnClicksOnTasks(){ //добавляет к таскам онклики
     tasks = document.querySelectorAll('.task')
-    doneButtons = document.querySelectorAll('.done-btn')
-    let i = Array.from(doneButtons)
+    deleteButtons = document.querySelectorAll('.delete-btn')
+
+    let everyTask = Array.from(tasks)
+
+    everyTask[everyTask.length-1].addEventListener('click', function(event){
+        let target = event.target 
+        if(target.className != 'delete-btn' && target.classList != 'details-btn'){
+            (tasks[everyTask.length-1].classList.contains('task-done')) ? tasks[everyTask.length-1].classList.remove('task-done') :
+            tasks[everyTask.length-1].classList.add('task-done');
+        }
+    })
     
-    i.forEach((el) => {
+    /* everyTask.forEach((el) => {             //делает таск выполненым и не касается кнопок
+        el.addEventListener('click', function(event){
+            let target = event.target 
+            if(target.className != 'delete-btn' && target.classList != 'details-btn'){
+                (tasks[everyTask.indexOf(el)].classList.contains('task-done')) ? tasks[everyTask.indexOf(el)].classList.remove('task-done') :
+                tasks[everyTask.indexOf(el)].classList.add('task-done');
+            }
+        })
+    }) */
+
+    let everyDeleteBtn = Array.from(deleteButtons)
+
+    everyDeleteBtn.forEach((el) => {
         el.onclick = () => {
-            (tasks[i.indexOf(el)].classList.contains('task-done')) ? tasks[i.indexOf(el)].classList.remove('task-done') :
-            tasks[i.indexOf(el)].classList.add('task-done');
+            tasks[everyDeleteBtn.indexOf(el)].remove()
         }
     })
 
@@ -84,14 +105,14 @@ confirmTask.onclick = () => {
 
             <div class="bottom-task-panel">
                 <div class="details-btn">See details</div>
-                <div class="done-btn">Done</div>
+                <div class="delete-btn">&#10008;</div>  
             </div>
         
         </div>
         `
     )
     checkIsModalVisible()
-    testing()
+    addOnClicksOnTasks()
     nameOfTaskInput.value = ''
 }
 
@@ -120,3 +141,18 @@ let taskForm =
         </div>
         
     </div>` */
+
+    /* everyTask.forEach((el) => {
+        el.onclick = () => {
+            (tasks[everyTask.indexOf(el)].classList.contains('task-done')) ? tasks[everyTask.indexOf(el)].classList.remove('task-done') :
+            tasks[everyTask.indexOf(el)].classList.add('task-done');
+        }
+    }) */
+
+     /* let deleteBtn = document.querySelectorAll('.delete-btn')
+
+    deleteBtn.forEach((el) => {
+        el.onclick = () => {
+            alert(15)
+        }
+    }) */
