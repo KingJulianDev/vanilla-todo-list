@@ -55,17 +55,8 @@ function addOnClicksOnTasks(){ //добавляет к таскам онклик
     deleteButtons = document.querySelectorAll('.delete-btn')
 
     let everyTask = Array.from(tasks)
-    let numberOfTask = 0
 
-    /* everyTask[everyTask.length-1].addEventListener('click', function(event){
-        let target = event.target 
-        if(target.className != 'delete-btn' && target.classList != 'details-btn'){
-            (tasks[everyTask.length-1].classList.contains('task-done')) ? tasks[everyTask.length-1].classList.remove('task-done') :
-            tasks[everyTask.length-1].classList.add('task-done');
-        }
-    }) */
-
-    everyTask.forEach((el) => {
+    everyTask.forEach((el) => { //делает таск выполненым и не касается кнопок
         el.onclick = (event) => {
             if(event.target.className != 'delete-btn' && event.target.className != 'details-btn'){
                 (everyTask[everyTask.indexOf(el)].classList.contains('task-done')) ? everyTask[everyTask.indexOf(el)].classList.remove('task-done') :
@@ -73,16 +64,6 @@ function addOnClicksOnTasks(){ //добавляет к таскам онклик
             }
         }
     })
-    
-    /* everyTask.forEach((el) => {             //делает таск выполненым и не касается кнопок
-        el.addEventListener('click', function(event){
-            let target = event.target 
-            if(target.className != 'delete-btn' && target.classList != 'details-btn'){
-                (tasks[everyTask.indexOf(el)].classList.contains('task-done')) ? tasks[everyTask.indexOf(el)].classList.remove('task-done') :
-                tasks[everyTask.indexOf(el)].classList.add('task-done');
-            }
-        })
-    }) */
 
     let everyDeleteBtn = Array.from(deleteButtons)
 
@@ -94,9 +75,7 @@ function addOnClicksOnTasks(){ //добавляет к таскам онклик
 
 }
 
-let lodur = 1
-
-confirmTask.onclick = () => {
+confirmTask.onclick = () => {       //рендерит таск и вызывает функцию добавления онкликов
     nameOfTask = nameOfTaskInput.value
     detailsOfTask = detailsOfTaskInput.value
 
@@ -125,7 +104,7 @@ confirmTask.onclick = () => {
     )
     checkIsModalVisible()
     addOnClicksOnTasks()
-    nameOfTaskInput.value = lodur++//''
+    nameOfTaskInput.value = ''
 }
 
 /* let obj = {
