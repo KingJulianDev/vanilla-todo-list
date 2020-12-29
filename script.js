@@ -107,6 +107,8 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
     nameOfTaskInput.value = ''
 }
 
+//LAST VERSION
+
 /* let obj = {
     name: nameOfTask,
     descripion: descripionOfTask,
