@@ -8,6 +8,7 @@ const dateInput = document.getElementById('modal-time-limited')
 const confirmTask = document.querySelector('.add-task')
 const nameOfTaskInput = document.getElementById('name-input')
 const detailsOfTaskInput = document.getElementById('details-input')
+const modalDetails = document.querySelector('.modal-details')
 
 let nameOfTask 
 let detailsOfTask
@@ -16,6 +17,7 @@ let tasks               //массив тасков
 let doneButtons         //массив кнопок "сделано"
 let deleteButtons       //массив кнопок "удалить"
 let importantButtons    //массив кнопок "важно"
+let detailsButtons      //массив кнопок "посмотреть детали"
 let tasksArr = []       // array with tasks
 
 function clock(){
@@ -25,6 +27,7 @@ function clock(){
 clock()
 
 let isModalVisible = false
+let isModalDetailsVisible = false
 
 function checkIsModalVisible(){ //проверяет видимо ли модальное окно
     isModalVisible = !isModalVisible
@@ -86,6 +89,11 @@ function addOnClicksOnTasks(){ //добавляет к таскам онклик
             tasks[everyDeleteBtn.indexOf(el)].remove()
         }
     })
+
+    detailsButtons = document.querySelectorAll('.details-btn')
+    detailsButtons[detailsButtons.length-1].onclick = () => {
+        modalDetails.style.visibility = 'visible'
+    }
 
 }
 
