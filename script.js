@@ -3,6 +3,7 @@ const tasksDesk = document.querySelector('.tasks-desk')
 const addTaskButton = document.querySelector('.add-task-button')
 const modal = document.querySelector('.modal')
 const limitedBtn = document.querySelector('.limited')
+const importantBtn = document.querySelector('.important')
 const dateInput = document.getElementById('modal-time-limited')
 const confirmTask = document.querySelector('.add-task')
 const nameOfTaskInput = document.getElementById('name-input')
@@ -11,10 +12,11 @@ const detailsOfTaskInput = document.getElementById('details-input')
 let nameOfTask 
 let detailsOfTask
 
-let tasks           //массив тасков
-let doneButtons     //массив кнопок "сделано"
-let deleteButtons   //массив кнопок "удалить"
-let tasksArr = [] // array with tasks
+let tasks               //массив тасков
+let doneButtons         //массив кнопок "сделано"
+let deleteButtons       //массив кнопок "удалить"
+let importantButtons    //массив кнопок "важно"
+let tasksArr = []       // array with tasks
 
 function clock(){
     header.innerHTML = new Date().toString().slice(0, 24)
@@ -38,6 +40,7 @@ addTaskButton.onclick = () => {
 }
 
 let isDateInputActive = false // проверяет активен ли инпут даты
+
 limitedBtn.onclick = () => {
     isDateInputActive = !isDateInputActive
     if(isDateInputActive === true){
@@ -47,8 +50,19 @@ limitedBtn.onclick = () => {
         dateInput.disabled = true
         limitedBtn.classList.remove('limited-active')
     }
-    
 }
+
+let isImportantBtnActive = false // проверяет активна ли кнопка "важно"
+
+importantBtn.onclick = () => {
+    isImportantBtnActive = !isImportantBtnActive
+    if(isImportantBtnActive === true){
+        importantBtn.classList.add('important-active')
+    }else{
+        importantBtn.classList.remove('important-active')
+    }
+}
+    
 
 function addOnClicksOnTasks(){ //добавляет к таскам онклики
     tasks = document.querySelectorAll('.task')
@@ -67,7 +81,7 @@ function addOnClicksOnTasks(){ //добавляет к таскам онклик
 
     let everyDeleteBtn = Array.from(deleteButtons)
 
-    everyDeleteBtn.forEach((el) => {
+    everyDeleteBtn.forEach((el) => {  //онклики на кнопки удаления
         el.onclick = () => {
             tasks[everyDeleteBtn.indexOf(el)].remove()
         }
@@ -79,7 +93,7 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
     nameOfTask = nameOfTaskInput.value
     detailsOfTask = detailsOfTaskInput.value
 
-    tasksArr.push({name: nameOfTask, details: detailsOfTask, isImportant: false, isTimeLimited: false})
+    tasksArr.push({name: nameOfTask, details: detailsOfTask, isTimeLimited: isDateInputActive, isImportant: isImportantBtnActive})
 
     tasksDesk.insertAdjacentHTML(
         'beforeend',
@@ -89,8 +103,8 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
             <div class="top-task-panel">
                 <div class="name-of-task">${nameOfTask}</div>
                 <div class="task-info">
-                    <div class="is-time-limited">&#x1F551;</div>
-                    <div class="is-important">&#x2755;</div>
+                    <div class="is-time-limited"></div>
+                    <div class="is-important"></div>
                 </div>
             </div>
 
@@ -104,8 +118,35 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
     )
     checkIsModalVisible()
     addOnClicksOnTasks()
-    nameOfTaskInput.value = ''
+
+    if(isImportantBtnActive === true){
+        let importantBtns = document.querySelectorAll('.is-important')
+        importantBtns[importantBtns.length-1].innerHTML = '&#x2755;'
+    }
+
+    if(isDateInputActive === true){
+        let limitedBtns = document.querySelectorAll('.is-time-limited')
+        limitedBtns[limitedBtns.length-1].innerHTML = '&#x1F551;'
+    }
+
+    function modalToDefault(){           //возвращет модалку в исходное состояние
+        nameOfTaskInput.value = ''
+        detailsOfTaskInput.value = ''
+        isImportantBtnActive = false
+        isDateInputActive = false
+        importantBtn.classList.remove('important-active')
+        limitedBtn.classList.remove('limited-active')
+        dateInput.disabled = true
+    }
+    modalToDefault()
+    console.log(tasksArr)
 }
+
+
+
+
+
+
 
 /* let obj = {
     name: nameOfTask,
@@ -113,7 +154,6 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
     isImportant: false,
     isTimeLimited: false,
 } */
-
 
 /* let test1 = 'buy some milk'
 let taskForm = 
@@ -141,9 +181,12 @@ let taskForm =
     }) */
 
      /* let deleteBtn = document.querySelectorAll('.delete-btn')
+     
 
     deleteBtn.forEach((el) => {
         el.onclick = () => {
             alert(15)
         }
     }) */
+
+// clock &#x1F551;
