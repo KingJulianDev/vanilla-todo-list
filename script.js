@@ -9,6 +9,8 @@ const confirmTask = document.querySelector('.add-task')
 const nameOfTaskInput = document.getElementById('name-input')
 const detailsOfTaskInput = document.getElementById('details-input')
 const modalDetails = document.querySelector('.modal-details')
+const detailsContent = document.querySelector('.details-content') 
+const closeDetails = document.querySelector('.close-details')
 
 let nameOfTask 
 let detailsOfTask
@@ -19,6 +21,7 @@ let deleteButtons       //массив кнопок "удалить"
 let importantButtons    //массив кнопок "важно"
 let detailsButtons      //массив кнопок "посмотреть детали"
 let tasksArr = []       // array with tasks
+
 
 function clock(){
     header.innerHTML = new Date().toString().slice(0, 24)
@@ -65,41 +68,49 @@ importantBtn.onclick = () => {
         importantBtn.classList.remove('important-active')
     }
 }
-    
+
+closeDetails.onclick = () => {
+    isModalDetailsVisible = false
+    modalDetails.style.visibility = 'hidden'
+}
+
+function addOnclicksOnDetailsButtons(){
+    detailsButtons = Array.from(document.querySelectorAll('.details-btn'))
+    detailsButtons.forEach((el) => {
+        el.onclick = () =>{
+            modalDetails.style.visibility = 'visible'
+            detailsContent.innerHTML = tasksArr[detailsButtons.indexOf(el)].details
+        }
+    })
+}
+
+function addOnclicksOnDeleteButtons(){
+    deleteButtons = Array.from(document.querySelectorAll('.delete-btn'))
+    tasks = Array.from(document.querySelectorAll('.task'))
+    deleteButtons.forEach((el) => {
+        let index 
+        el.onclick = () => {
+            index = deleteButtons.indexOf(el)
+            deleteButtons = Array.from(document.querySelectorAll('.delete-btn'))
+            detailsButtons = Array.from(document.querySelectorAll('.details-btn'))
+            tasks = Array.from(document.querySelectorAll('.task'))
+            deleteButtons.splice(index, 1)
+            detailsButtons.splice(index, 1)
+            tasks[index].remove()
+            tasks.splice(index, 1)
+            tasksArr.splice(index, 1)
+        }
+    })
+}
 
 function addOnClicksOnTasks(){ //добавляет к таскам онклики
-    tasks = document.querySelectorAll('.task')
-    deleteButtons = document.querySelectorAll('.delete-btn')
-
-    let everyTask = Array.from(tasks)
-
-    everyTask.forEach((el) => { //делает таск выполненым и не касается кнопок
-        el.onclick = (event) => {
-            if(event.target.className != 'delete-btn' && event.target.className != 'details-btn'){
-                (everyTask[everyTask.indexOf(el)].classList.contains('task-done')) ? everyTask[everyTask.indexOf(el)].classList.remove('task-done') :
-                everyTask[everyTask.indexOf(el)].classList.add('task-done');
-            }
-        }
-    })
-
-    let everyDeleteBtn = Array.from(deleteButtons)
-
-    everyDeleteBtn.forEach((el) => {  //онклики на кнопки удаления
-        el.onclick = () => {
-            tasks[everyDeleteBtn.indexOf(el)].remove()
-        }
-    })
-
-    detailsButtons = document.querySelectorAll('.details-btn')
-    detailsButtons[detailsButtons.length-1].onclick = () => {
-        modalDetails.style.visibility = 'visible'
-    }
-
+    addOnclicksOnDetailsButtons()
+    addOnclicksOnDeleteButtons()
 }
 
 confirmTask.onclick = () => {       //рендерит таск и вызывает функцию добавления онкликов
-    nameOfTask = nameOfTaskInput.value
-    detailsOfTask = detailsOfTaskInput.value
+        nameOfTask = nameOfTaskInput.value
+        detailsOfTask = detailsOfTaskInput.value
 
     tasksArr.push({name: nameOfTask, details: detailsOfTask, isTimeLimited: isDateInputActive, isImportant: isImportantBtnActive})
 
@@ -147,7 +158,6 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
         dateInput.disabled = true
     }
     modalToDefault()
-    console.log(tasksArr)
 }
 
 
