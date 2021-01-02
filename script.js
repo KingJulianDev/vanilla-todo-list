@@ -1,4 +1,4 @@
-const header = document.querySelector('.header')
+const clock = document.querySelector('.clock')
 const tasksDesk = document.querySelector('.tasks-desk')
 const addTaskButton = document.querySelector('.add-task-button')
 const modal = document.querySelector('.modal')
@@ -12,6 +12,12 @@ const modalDetails = document.querySelector('.modal-details')
 const detailsContent = document.querySelector('.details-content') 
 const closeDetails = document.querySelector('.close-details')
 
+const filterAllButton = document.getElementById('all')
+//const filterActiveButton = document.getElementById('active')
+const filterDoneButton = document.getElementById('done')
+const filterImportantButton = document.getElementById('important')
+const filterUrgentButton = document.getElementById('urgent')
+
 let nameOfTask 
 let detailsOfTask
 
@@ -20,13 +26,21 @@ let doneButtons         //массив кнопок "сделано"
 let deleteButtons       //массив кнопок "удалить"
 let importantButtons    //массив кнопок "важно"
 let detailsButtons      //массив кнопок "посмотреть детали"
-let tasksArr = []       // array with tasks
+let tasksArr = []       //array with tasks object
+let filterButtonsArr = [
+    {name: all, isActive: true},
+    {name: done, isActive: false},
+    {name: important, isActive: false},
+    {name: urgent, isActive: false}
+]
 
-function clock(){
-    header.innerHTML = new Date().toString().slice(0, 24)
-    setInterval(() => {header.innerHTML = new Date().toString().slice(0, 24)}, 1000)
+filterAllButton.classList.add('filter-btn-active')
+
+function clockF(){
+    clock.innerHTML = new Date().toString().slice(0, 24)
+    setInterval(() => {clock.innerHTML = new Date().toString().slice(0, 24)}, 1000)
 }
-clock()
+clockF()
 
 let isModalVisible = false
 let isModalDetailsVisible = false
@@ -102,16 +116,41 @@ function addOnclicksOnDeleteButtons(){
     })
 }
 
-function addOnClicksOnTasks(){ //добавляет к таскам онклики
-    addOnclicksOnDetailsButtons()
-    addOnclicksOnDeleteButtons()
+function addOnclicksOnTasks(){
+    tasks = Array.from(document.querySelectorAll('.task'))
+    tasks.forEach((el) => { 
+        el.onclick = (event) => {
+            let index = tasks.indexOf(el)
+            if(event.target.className != 'delete-btn' && event.target.className != 'details-btn'){
+                if(tasksArr[index].isDone === true){    // проверяет на выполненость таска
+                    tasks[index].classList.remove('task-done')
+                    tasksArr[index].isDone = false
+                }else{
+                    tasks[index].classList.add('task-done')
+                    tasksArr[index].isDone = true
+                }
+            }
+        }
+    })
+}
+
+function addOnClicksOnTasks(){ 
+    addOnclicksOnDetailsButtons()   //добавляет онклики к кнопкам деталей
+    addOnclicksOnDeleteButtons()    //добавляет онклики к кнопкам удаления
+    addOnclicksOnTasks()            //добавляет онклики к таскам
 }
 
 confirmTask.onclick = () => {       //рендерит таск и вызывает функцию добавления онкликов
         nameOfTask = nameOfTaskInput.value
         detailsOfTask = detailsOfTaskInput.value
 
-    tasksArr.push({name: nameOfTask, details: detailsOfTask, isTimeLimited: isDateInputActive, isImportant: isImportantBtnActive})
+    tasksArr.push({
+        name: nameOfTask, 
+        details: detailsOfTask, 
+        isUrgent: isDateInputActive, 
+        isImportant: isImportantBtnActive,
+        isDone: false
+    })
 
     tasksDesk.insertAdjacentHTML(
         'beforeend',
@@ -159,9 +198,65 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
     modalToDefault()
 }
 
+//////////////////////////////FILTER//////////////////////////////////////////////////////
+function filterImportant(){
+    filterAll()
+    tasksArr.forEach((el) => {
+        let index = tasksArr.indexOf(el)
+        if(tasksArr[index].isImportant === false){
+            tasks[index].style.display = 'none'
+        }
+    })
+}
+filterImportantButton.onclick = () => {
+    filterImportant()
+}
+
+function filterUrgent(){
+    filterAll()
+    tasksArr.forEach((el) => {
+        let index = tasksArr.indexOf(el)
+        if(tasksArr[index].isUrgent === false){
+            tasks[index].style.display = 'none'
+        }
+    })
+}
+filterUrgentButton.onclick = () => {
+    filterUrgent()
+}
+
+function filterDone(){
+    filterAll()
+    tasksArr.forEach((el) => {
+        let index = tasksArr.indexOf(el)
+        if(tasksArr[index].isDone === false){
+            tasks[index].style.display = 'none'
+        }
+    })
+}
+filterDoneButton.onclick = () => {
+    filterDone()
+}
+
+function filterAll(){
+    for(let i = 0; i < tasksArr.length; i++){
+        tasks[i].style.display = 'unset'
+    }
+}
+filterAllButton.onclick = () => {
+    filterAll()
+}
 
 
 
+/* let testArr = [
+    {name: 'abc', details: 'abc', isTimeLimited: false, isImportant: true, isDone: true},
+    {name: 'abc', details: 'abc', isTimeLimited: true, isImportant: false, isDone: false},
+    {name: 'abc', details: 'abc', isTimeLimited: false, isImportant: false, isDone: false},
+    {name: 'abc', details: 'abc', isTimeLimited: true, isImportant: false, isDone: false},
+    {name: 'abc', details: 'abc', isTimeLimited: false, isImportant: true, isDone: true}
+]
 
-
+let importantItems = testArr.filter(el => el.isImportant === true)
+console.log(importantItems) */
 

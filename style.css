@@ -25,7 +25,51 @@ body{
     margin-bottom: 10px;
     color: white;
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.clock{
+    height: 50px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+}
+
+.filter{
+    width: 100%;
+    height: 50px;
+    color: white;
+}
+
+.filter-btn-active{
+    background-color: royalblue;
+}
+
+.filter-panel{
+    width: 402px;
+    list-style: none;
+    display: inline-block;
+    /* justify-content: space-around; */
+    padding: 0;
+    margin: 0;
+}
+
+.filter-parametr{
+    display: inline-block;
+    width: auto;
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    border-radius: 10px;
+    float: right;
+    padding: 10px 10px 0 10px;
+    box-sizing: border-box;
+}
+
+.filter-parametr:hover{
+    background-color: lightgrey;
 }
 
 .tasks-desk{
@@ -43,7 +87,7 @@ body{
     width: 45%;
     height: 150px;
     margin-bottom: 10px;
-    border-radius: 15px;
+    border-radius: 5px 5px 15px 15px;
     color: white;
 }
 
