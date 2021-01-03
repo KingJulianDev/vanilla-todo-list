@@ -179,7 +179,7 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
             </div>
 
             <div class="bottom-task-panel">
-                <div class="details-btn">See details</div>
+                <div class="details-btn">Details</div>
                 <div class="delete-btn">&#10008;</div>  
             </div>
         
@@ -281,16 +281,4 @@ filterAllButton.onclick = () => {
     checkFilterButtonStatus()
 }
 
-
-
-/* let testArr = [
-    {name: 'abc', details: 'abc', isTimeLimited: false, isImportant: true, isDone: true},
-    {name: 'abc', details: 'abc', isTimeLimited: true, isImportant: false, isDone: false},
-    {name: 'abc', details: 'abc', isTimeLimited: false, isImportant: false, isDone: false},
-    {name: 'abc', details: 'abc', isTimeLimited: true, isImportant: false, isDone: false},
-    {name: 'abc', details: 'abc', isTimeLimited: false, isImportant: true, isDone: true}
-]
-
-let importantItems = testArr.filter(el => el.isImportant === true)
-console.log(importantItems) */
 

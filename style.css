@@ -8,11 +8,10 @@ body{
 .app{
     width: 50%;
     height: 99vh;
-    /* overflow: scroll; */
     overflow-y: scroll;
     margin: 0 auto;
     border: 1px solid black;
-    background-color: gray;
+    background-color: #1F7A8C;
 }
 
 .app::-webkit-scrollbar {
@@ -22,7 +21,7 @@ body{
 .header{
     width: 100%;
     height: 100px;
-    background-color: black;
+    background-color: #053C5E;
     margin-bottom: 10px;
     color: white;
     font-weight: bolder;
@@ -33,53 +32,18 @@ body{
 
 .clock{
     height: 50px;
-    background-color: black;
+    background-color: #053C5E;
     color: white;
     text-align: center;
     padding-top: 5px;
     box-sizing: border-box;
 }
 
-/* .filter{
-    width: 100%;
-    height: 50px;
-    color: white;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.filter-btn-active{
-    background-color: royalblue;
-}
-
-.filter-panel{
-    width: 402px;
-    list-style: none;
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-}
-
-.filter-parametr{
-    display: inline-block;
-    width: auto;
-    font-size: 20px;
-    text-align: center;
-    height: 50px;
-    border-radius: 10px;
-    float: right;
-    padding: 10px 10px 0 10px;
-    box-sizing: border-box;
-}
-
-.filter-parametr:hover{
-    background-color: lightgrey;
-} */
-
 .filter{
     height: 50px;
     display: flex;
     justify-content: flex-end;
+    box-shadow: 0 5px 5px black;
 }
 
 .filter-panel{
@@ -89,8 +53,8 @@ body{
 }
 
 .filter-panel li{
-    background-color: black;
-    border: 1px solid grey;
+    background-color: #A31621;
+    border: 1px solid white;
     color: white;
     float: left;
     list-style: none;
@@ -107,11 +71,11 @@ body{
 }
 
 .filter-panel li:hover {
-    background-color: orange;
+    background-color: #650000;
 }
 
 .filter-panel .filter-btn-active{
-    background-color: orangered;
+    background-color: #650000;
 }
 
 
@@ -121,21 +85,26 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* min-height: 320px; */
     position: relative;
 }
 
 .task{
-    background-color: black;
+    background-color: #628CAB;
     width: 45%;
     height: 150px;
-    margin-bottom: 10px;
-    border-radius: 5px 5px 15px 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
     color: white;
+    box-shadow: 0 5px 10px black;
+}
+
+.task:hover{
+    transform: scale(1.1);
 }
 
 .task-done{
-    background-color: limegreen;
+    background-color: #409C59;
 }
 
 .add-task-block{
@@ -145,6 +114,8 @@ body{
     bottom: 0;
     display: flex;
     justify-content: center;
+    pointer-events: none;
+    margin-bottom: 15px;
 }
 
 .task-info{
@@ -157,13 +128,15 @@ body{
     height: 89px;
     width: 90px;
     border-radius: 50%;
-    background-color: orangered;
+    background-color: #A31621;
     color: white;
-    border: 1px solid black;
+    border: 1px solid white;
     text-align: center;
     font-size: 80px;
-    margin-top: 5px;
+    margin: 5px auto 0 auto;
     z-index: 2;
+    pointer-events: all;
+    box-shadow: 0 5px 10px black;
 }
 
 .top-task-panel, .bottom-task-panel{
@@ -198,16 +171,25 @@ body{
     width: 60%;
     height: 70%;
     border-radius: 15px;
-    background-color: white;
-    color: orangered;
+    background-color: #91B4D1;
+    color: black;
     text-align: center;
-    padding-top: 12px;
+    padding-top: 9px;
     box-sizing: border-box;
     margin-top: 10px;
+    font-size: 1.5em;
+    font-weight: bolder;
 }
 
 .delete-btn{
     width: 30%;
+    padding-top: 5px;
+    color: #A31621;
+}
+
+.delete-btn:hover{
+    color: black;
+    background-color: #DB222A;
 }
 
 .modal{
@@ -217,9 +199,10 @@ body{
     visibility: hidden;
     position: fixed;
     margin: 5% auto;
-    /* top:10%;
-    left: 10%; */
     border-radius: 15px;
+    box-shadow: 0 5px 10px black;
+    z-index: 2;
+    
 }
 
 .modal-details{
@@ -269,15 +252,17 @@ body{
     width: 15%;
     height: 40px;
     text-align: center;
-    background-color: grey;
+    background-color: #E0BB5E;
     margin-top: 15px;
     border-radius: 15px;
     padding-top: 10px;
     box-sizing: border-box;
+    box-shadow: 0 5px 10px black;
 }
 
 .important-active, .limited-active{
-    background-color: greenyellow;
+    background-color: #053C5E;
+    box-shadow: unset;
 }
 
 #name-input, #details-input, #modal-time-limited{
@@ -297,13 +282,14 @@ body{
 .add-task{
     width: 60%;
     height: 80px;
-    background-color: navy;
+    background-color: #053C5E;
     text-align: center;
     margin: 20px auto;
     color: white;
     font-size: 35px;
     margin-top: 30px;
     border-radius: 15px;
+    box-shadow: 0 5px 10px black;
 }
 
 #details-input{
