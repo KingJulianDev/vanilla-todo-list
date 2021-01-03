@@ -11,9 +11,9 @@ const detailsOfTaskInput = document.getElementById('details-input')
 const modalDetails = document.querySelector('.modal-details')
 const detailsContent = document.querySelector('.details-content') 
 const closeDetails = document.querySelector('.close-details')
+const timeLimitedDetails = document.querySelector('.time-limited-details')
 
 const filterAllButton = document.getElementById('all')
-//const filterActiveButton = document.getElementById('active')
 const filterDoneButton = document.getElementById('done')
 const filterImportantButton = document.getElementById('important')
 const filterUrgentButton = document.getElementById('urgent')
@@ -28,13 +28,23 @@ let importantButtons    //массив кнопок "важно"
 let detailsButtons      //массив кнопок "посмотреть детали"
 let tasksArr = []       //array with tasks object
 let filterButtonsArr = [
-    {name: all, isActive: true},
-    {name: done, isActive: false},
-    {name: important, isActive: false},
-    {name: urgent, isActive: false}
+    {name: 'urgent', isActive: true},
+    {name: 'important', isActive: false},
+    {name: 'done', isActive: false},
+    {name: 'all', isActive: false}
 ]
+let arrayOfFilterButtons = [filterAllButton, filterDoneButton, filterImportantButton, filterUrgentButton]
 
-filterAllButton.classList.add('filter-btn-active')
+function checkFilterButtonStatus(){
+        filterButtonsArr.forEach((el) => {
+            if(filterButtonsArr[filterButtonsArr.indexOf(el)].isActive === true){
+                arrayOfFilterButtons[filterButtonsArr.indexOf(el)].classList.add('filter-btn-active')
+            }else{
+                arrayOfFilterButtons[filterButtonsArr.indexOf(el)].classList.remove('filter-btn-active')
+            }
+        })
+}
+checkFilterButtonStatus()
 
 function clockF(){
     clock.innerHTML = new Date().toString().slice(0, 24)
@@ -91,8 +101,10 @@ function addOnclicksOnDetailsButtons(){
     detailsButtons = Array.from(document.querySelectorAll('.details-btn'))
     detailsButtons.forEach((el) => {
         el.onclick = () =>{
+            let index = detailsButtons.indexOf(el)
             modalDetails.style.visibility = 'visible'
             detailsContent.innerHTML = tasksArr[detailsButtons.indexOf(el)].details
+            timeLimitedDetails.innerHTML = "Do before " + tasksArr[index].doBefore
         }
     })
 }
@@ -149,7 +161,8 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
         details: detailsOfTask, 
         isUrgent: isDateInputActive, 
         isImportant: isImportantBtnActive,
-        isDone: false
+        isDone: false,
+        doBefore: dateInput.value
     })
 
     tasksDesk.insertAdjacentHTML(
@@ -196,6 +209,7 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
         dateInput.disabled = true
     }
     modalToDefault()
+    checkFilterButtonStatus()
 }
 
 //////////////////////////////FILTER//////////////////////////////////////////////////////
@@ -209,7 +223,12 @@ function filterImportant(){
     })
 }
 filterImportantButton.onclick = () => {
+    filterButtonsArr.forEach((el) => {
+        el.isActive = false
+    })
+    filterButtonsArr[2].isActive = true
     filterImportant()
+    checkFilterButtonStatus()
 }
 
 function filterUrgent(){
@@ -222,7 +241,12 @@ function filterUrgent(){
     })
 }
 filterUrgentButton.onclick = () => {
+    filterButtonsArr.forEach((el) => {
+        el.isActive = false
+    })
+    filterButtonsArr[3].isActive = true
     filterUrgent()
+    checkFilterButtonStatus()
 }
 
 function filterDone(){
@@ -235,7 +259,12 @@ function filterDone(){
     })
 }
 filterDoneButton.onclick = () => {
+    filterButtonsArr.forEach((el) => {
+        el.isActive = false
+    })
+    filterButtonsArr[1].isActive = true
     filterDone()
+    checkFilterButtonStatus()
 }
 
 function filterAll(){
@@ -244,7 +273,12 @@ function filterAll(){
     }
 }
 filterAllButton.onclick = () => {
+    filterButtonsArr.forEach((el) => {
+        el.isActive = false
+    })
+    filterButtonsArr[0].isActive = true
     filterAll()
+    checkFilterButtonStatus()
 }
 
 

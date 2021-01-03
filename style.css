@@ -12,6 +12,7 @@ body{
     overflow-y: scroll;
     margin: 0 auto;
     border: 1px solid black;
+    background-color: gray;
 }
 
 .app::-webkit-scrollbar {
@@ -21,7 +22,7 @@ body{
 .header{
     width: 100%;
     height: 100px;
-    background-color: grey;
+    background-color: black;
     margin-bottom: 10px;
     color: white;
     font-weight: bolder;
@@ -32,15 +33,19 @@ body{
 
 .clock{
     height: 50px;
-    background-color: gray;
+    background-color: black;
     color: white;
     text-align: center;
+    padding-top: 5px;
+    box-sizing: border-box;
 }
 
-.filter{
+/* .filter{
     width: 100%;
     height: 50px;
     color: white;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .filter-btn-active{
@@ -51,7 +56,6 @@ body{
     width: 402px;
     list-style: none;
     display: inline-block;
-    /* justify-content: space-around; */
     padding: 0;
     margin: 0;
 }
@@ -70,7 +74,46 @@ body{
 
 .filter-parametr:hover{
     background-color: lightgrey;
+} */
+
+.filter{
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
 }
+
+.filter-panel{
+    margin: 0;
+    height: 49px;
+    box-sizing: border-box;
+}
+
+.filter-panel li{
+    background-color: black;
+    border: 1px solid grey;
+    color: white;
+    float: left;
+    list-style: none;
+    padding: 0 15px;
+    font-size: 20px;
+    height: 50px;
+    padding-top: 12px;
+    box-sizing: border-box;
+    float: right;
+}
+
+.filter-panel li:not(:last-child) {
+    border-right: none;
+}
+
+.filter-panel li:hover {
+    background-color: orange;
+}
+
+.filter-panel .filter-btn-active{
+    background-color: orangered;
+}
+
 
 .tasks-desk{
     width: 100%;
@@ -83,7 +126,7 @@ body{
 }
 
 .task{
-    background-color: orangered;
+    background-color: black;
     width: 45%;
     height: 150px;
     margin-bottom: 10px;
@@ -111,10 +154,12 @@ body{
 }
 
 .add-task-button{
-    height: 90px;
+    height: 89px;
     width: 90px;
     border-radius: 50%;
     background-color: orangered;
+    color: white;
+    border: 1px solid black;
     text-align: center;
     font-size: 80px;
     margin-top: 5px;
@@ -140,6 +185,7 @@ body{
     height: 50%;
     background-color: rgb(0, 0, 0, 0);
     text-align: center;
+    color: red;
 }
 
 .name-of-task{
@@ -152,7 +198,8 @@ body{
     width: 60%;
     height: 70%;
     border-radius: 15px;
-    background-color: grey;
+    background-color: white;
+    color: orangered;
     text-align: center;
     padding-top: 12px;
     box-sizing: border-box;
@@ -201,6 +248,9 @@ body{
 .time-limited-details{
     height: 100%;
     width: 75%;
+    padding: 18px 5px 15px 15px;
+    box-sizing: border-box;
+    font-size: 20px;
 }
 
 .close-details{
