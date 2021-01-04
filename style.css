@@ -211,22 +211,25 @@ body{
     visibility: hidden;
     position: fixed;
     margin: 10% auto;
-    border-radius: 15px;
     z-index: 2;
 }
 
 .details-top-panel{
     display: flex;
+    border-radius: 15px 15px 0 0;
 }
 
 .details-top-panel{
     height: 30%;
-    background-color: olive;
+    background-color: #DAA520;
 }
 
 .details-content{
     height: 80%;
-    background-color: olivedrab;
+    background-color:#F6EB57;
+    padding: 10px 5px 5px 10px;
+    box-sizing: border-box;
+    border-radius: 0 0 15px 15px;
 }
 
 .time-limited-details{
