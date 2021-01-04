@@ -137,9 +137,14 @@ function addOnclicksOnTasks(){
                 if(tasksArr[index].isDone === true){    // проверяет на выполненость таска
                     tasks[index].classList.remove('task-done')
                     tasksArr[index].isDone = false
+                    detailsButtons[index].style.backgroundColor = '#91B4D1'
+                    deleteButtons[index].style.backgroundColor = '#91B4D1'
+                    
                 }else{
                     tasks[index].classList.add('task-done')
                     tasksArr[index].isDone = true
+                    detailsButtons[index].style.backgroundColor = '#73CF8C'
+                    deleteButtons[index].style.backgroundColor = '#73CF8C'
                 }
             }
         }
@@ -207,6 +212,7 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
         importantBtn.classList.remove('important-active')
         limitedBtn.classList.remove('limited-active')
         dateInput.disabled = true
+        dateInput.value = ''
     }
     modalToDefault()
     checkFilterButtonStatus()

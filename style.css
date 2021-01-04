@@ -187,10 +187,10 @@ body{
     color: #A31621;
 }
 
-.delete-btn:hover{
+/* .delete-btn:hover{
     color: black;
     background-color: #DB222A;
-}
+} */
 
 .modal{
     width: 300px;
@@ -201,7 +201,7 @@ body{
     margin: 5% auto;
     border-radius: 15px;
     box-shadow: 0 5px 10px black;
-    z-index: 2;
+    z-index: 3;
     
 }
 
@@ -212,6 +212,7 @@ body{
     position: fixed;
     margin: 10% auto;
     border-radius: 15px;
+    z-index: 2;
 }
 
 .details-top-panel{
