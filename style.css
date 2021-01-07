@@ -143,8 +143,13 @@ body{
     display: flex;
     height: 50%;
     justify-content: space-around;
-    padding: 7px 0 0 7px;
+    /* padding: 7px 0 0 7px; */
     box-sizing: border-box;
+    align-items: flex-end;
+}
+
+.top-task-panel{
+    align-items: center;
 }
 
 .is-time-limited{
@@ -170,27 +175,33 @@ body{
 .details-btn, .delete-btn{
     width: 60%;
     height: 70%;
-    border-radius: 15px;
+    border-radius: 0 0 0 15px;
     background-color: #91B4D1;
     color: black;
     text-align: center;
-    padding-top: 9px;
+    padding-top: 12px;
     box-sizing: border-box;
     margin-top: 10px;
     font-size: 1.5em;
     font-weight: bolder;
+    visibility: hidden;
 }
 
 .delete-btn{
-    width: 30%;
-    padding-top: 5px;
+    width: 40%;
+    padding-top: 8px;
     color: #A31621;
+    border-radius: 0 0 15px 0;
 }
 
-/* .delete-btn:hover{
+.details-btn:hover{
+    background-color: royalblue;
+}
+
+.delete-btn:hover{
     color: black;
     background-color: #DB222A;
-} */
+}
 
 .modal{
     width: 300px;
@@ -217,9 +228,6 @@ body{
 .details-top-panel{
     display: flex;
     border-radius: 15px 15px 0 0;
-}
-
-.details-top-panel{
     height: 30%;
     background-color: #DAA520;
 }

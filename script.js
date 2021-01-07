@@ -149,6 +149,20 @@ function addOnclicksOnTasks(){
             }
         }
     })
+    tasks[tasks.length-1].addEventListener('mouseenter', function(event){
+        let tasks = Array.from(document.querySelectorAll('.task'))
+        let index = tasks.indexOf(event.target)
+        console.log(index)
+        deleteButtons[index].style.visibility = 'visible'
+        detailsButtons[index].style.visibility = 'visible'
+    })
+
+    tasks[tasks.length-1].addEventListener('mouseleave', function(event){
+        let tasks = Array.from(document.querySelectorAll('.task'))
+        let index = tasks.indexOf(event.target)
+        deleteButtons[index].style.visibility = 'hidden'
+        detailsButtons[index].style.visibility = 'hidden'
+    })
 }
 
 function addOnClicksOnTasks(){ 
@@ -219,7 +233,7 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
 }
 
 //////////////////////////////FILTER//////////////////////////////////////////////////////
-function filterImportant(){
+function filterImportant(){         //фильтр важных
     filterAll()
     tasksArr.forEach((el) => {
         let index = tasksArr.indexOf(el)
@@ -237,7 +251,7 @@ filterImportantButton.onclick = () => {
     checkFilterButtonStatus()
 }
 
-function filterUrgent(){
+function filterUrgent(){            //фильтр срочных
     filterAll()
     tasksArr.forEach((el) => {
         let index = tasksArr.indexOf(el)
@@ -255,7 +269,7 @@ filterUrgentButton.onclick = () => {
     checkFilterButtonStatus()
 }
 
-function filterDone(){
+function filterDone(){          //фильтр выполненых
     filterAll()
     tasksArr.forEach((el) => {
         let index = tasksArr.indexOf(el)
@@ -273,7 +287,7 @@ filterDoneButton.onclick = () => {
     checkFilterButtonStatus()
 }
 
-function filterAll(){
+function filterAll(){           //показать все
     for(let i = 0; i < tasksArr.length; i++){
         tasks[i].style.display = 'unset'
     }
