@@ -137,14 +137,14 @@ function addOnclicksOnTasks(){
                 if(tasksArr[index].isDone === true){    // проверяет на выполненость таска
                     tasks[index].classList.remove('task-done')
                     tasksArr[index].isDone = false
-                    detailsButtons[index].style.backgroundColor = '#91B4D1'
-                    deleteButtons[index].style.backgroundColor = '#91B4D1'
+                    detailsButtons[index].style.background = 'linear-gradient(to top, royalblue, #628CAB)'
+                    deleteButtons[index].style.background = 'linear-gradient(to top, #A31621, #628CAB)'
                     
                 }else{
                     tasks[index].classList.add('task-done')
                     tasksArr[index].isDone = true
-                    detailsButtons[index].style.backgroundColor = '#73CF8C'
-                    deleteButtons[index].style.backgroundColor = '#73CF8C'
+                    detailsButtons[index].style.background = 'linear-gradient(to top, #416956, #409C59)'
+                    deleteButtons[index].style.background = 'linear-gradient(to top, #416956, #409C59)'
                 }
             }
         }

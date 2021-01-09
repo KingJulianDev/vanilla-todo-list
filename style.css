@@ -89,6 +89,7 @@ body{
 }
 
 .task{
+    transition: all 0.3s ease-in-out;
     background-color: #628CAB;
     width: 45%;
     height: 150px;
@@ -97,6 +98,7 @@ body{
     border-radius: 15px;
     color: white;
     box-shadow: 0 5px 10px black;
+    font-size: 1.5em;
 }
 
 .task:hover{
@@ -158,6 +160,7 @@ body{
     background-color: rgba(0, 0, 0, 0);
     border-radius: 15% 0 0 0;
     text-align: center;
+    font-size: .7em;
 }
 
 .is-important{
@@ -165,6 +168,7 @@ body{
     background-color: rgb(0, 0, 0, 0);
     text-align: center;
     color: red;
+    font-size: 0.7em;
 }
 
 .name-of-task{
@@ -177,13 +181,13 @@ body{
     width: 60%;
     height: 70%;
     border-radius: 0 0 0 15px;
-    background-color: #91B4D1;
+    background-color: royalblue/*  #91B4D1 */;
     color: black;
     text-align: center;
     padding-top: 12px;
     box-sizing: border-box;
     margin-top: 10px;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: bolder;
     visibility: hidden;
 }
@@ -193,15 +197,19 @@ body{
     padding-top: 8px;
     color: #A31621;
     border-radius: 0 0 15px 0;
+    background: linear-gradient(to top, #A31621, #628CAB);
 }
 
-.details-btn:hover{
-    background-color: royalblue;
+.details-btn{
+    background: linear-gradient(to top, royalblue, #628CAB);
 }
+/* .details-btn:hover{
+    background-color: royalblue;
+} */
 
 .delete-btn:hover{
     color: black;
-    background-color: #DB222A;
+    /* background-color: #DB222A; */
 }
 
 .modal{
@@ -214,7 +222,6 @@ body{
     border-radius: 15px;
     box-shadow: 0 5px 10px black;
     z-index: 3;
-    
 }
 
 .modal-details{
