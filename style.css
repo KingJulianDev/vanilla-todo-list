@@ -142,6 +142,10 @@ body{
     box-shadow: 0 5px 10px black;
 }
 
+.add-task-button:hover{
+    background-color: #650000;
+}
+
 .top-task-panel, .bottom-task-panel{
     display: flex;
     height: 50%;
@@ -195,7 +199,7 @@ body{
 .delete-btn{
     width: 40%;
     padding-top: 8px;
-    color: #A31621;
+    color: black;
     border-radius: 0 0 15px 0;
     background: linear-gradient(to top, #A31621, #628CAB);
 }
@@ -203,12 +207,13 @@ body{
 .details-btn{
     background: linear-gradient(to top, royalblue, #628CAB);
 }
-/* .details-btn:hover{
-    background-color: royalblue;
-} */
+
+.details-btn:hover{
+    color: white;
+}
 
 .delete-btn:hover{
-    color: black;
+    color: #A31621;
     /* background-color: #DB222A; */
 }
 
@@ -238,6 +243,7 @@ body{
     border-radius: 15px 15px 0 0;
     height: 30%;
     background-color: #DAA520;
+    box-shadow: 0 5px 10px black;
 }
 
 .details-content{
@@ -246,6 +252,7 @@ body{
     padding: 10px 5px 5px 10px;
     box-sizing: border-box;
     border-radius: 0 0 15px 15px;
+    box-shadow: 0 5px 10px black;
 }
 
 .time-limited-details{
@@ -261,6 +268,10 @@ body{
     height: 100%;
     text-align: center;
     font-size: 35px;
+}
+
+.close-details:hover{
+    color: red;
 }
 
 .modal-name-important, .modal-date-limited{
@@ -310,6 +321,10 @@ body{
     margin-top: 30px;
     border-radius: 15px;
     box-shadow: 0 5px 10px black;
+}
+
+.add-task:hover, .important:hover, .limited:hover{
+    transform: scale(1.1);
 }
 
 #details-input{
