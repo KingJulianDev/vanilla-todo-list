@@ -130,9 +130,8 @@ function addOnclicksOnDeleteButtons(){
 
 function addOnclicksOnTasks(){
     tasks = Array.from(document.querySelectorAll('.task'))
-    tasks.forEach((el) => { 
+    tasks.forEach((el,index) => { 
         el.onclick = (event) => {
-            let index = tasks.indexOf(el)
             if(event.target.className != 'delete-btn' && event.target.className != 'details-btn'){
                 if(tasksArr[index].isDone === true){    // проверяет на выполненость таска
                     tasks[index].classList.remove('task-done')
@@ -235,8 +234,7 @@ confirmTask.onclick = () => {       //рендерит таск и вызыва�
 //////////////////////////////FILTER//////////////////////////////////////////////////////
 function filterImportant(){         //фильтр важных
     filterAll()
-    tasksArr.forEach((el) => {
-        let index = tasksArr.indexOf(el)
+    tasksArr.forEach((el,index) => {
         if(tasksArr[index].isImportant === false){
             tasks[index].style.display = 'none'
         }
@@ -253,8 +251,7 @@ filterImportantButton.onclick = () => {
 
 function filterUrgent(){            //фильтр срочных
     filterAll()
-    tasksArr.forEach((el) => {
-        let index = tasksArr.indexOf(el)
+    tasksArr.forEach((el,index) => {
         if(tasksArr[index].isUrgent === false){
             tasks[index].style.display = 'none'
         }
@@ -271,8 +268,7 @@ filterUrgentButton.onclick = () => {
 
 function filterDone(){          //фильтр выполненых
     filterAll()
-    tasksArr.forEach((el) => {
-        let index = tasksArr.indexOf(el)
+    tasksArr.forEach((el,index) => {
         if(tasksArr[index].isDone === false){
             tasks[index].style.display = 'none'
         }
